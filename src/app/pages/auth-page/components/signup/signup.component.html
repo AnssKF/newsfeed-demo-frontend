@@ -1,1 +1,73 @@
-<p>signup works!</p>
+<div class="card">
+    <div class="card-body">
+
+        <div class="card-title">
+            <h1>Signup</h1>
+        </div>
+
+        <form [formGroup]="form"  (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="signup-username">Username</label>
+                <input 
+                    type="email" 
+                    class="form-control" 
+                    id="signup-username" 
+                    aria-describedby="signup-username-help"
+                    placeholder="Username"
+                    formControlName="username"
+                    [ngClass]="{'border-danger': !form.controls.username.valid && form.controls.username.touched}">
+                <small id="signup-username-help" class="form-text text-danger" *ngIf="!form.controls.username.valid && form.controls.username.touched">
+                    Username should be between 8 to 20 characters. With no special characters.
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="signup-email">Email address</label>
+                <input 
+                    type="email" 
+                    class="form-control" 
+                    id="signup-email" 
+                    aria-describedby="signup-email-help"
+                    placeholder="example@example.com"
+                    formControlName="email"
+                    [ngClass]="{'border-danger': !form.controls.email.valid && form.controls.email.touched}">
+                <small id="signup-email-help" class="form-text text-danger" *ngIf="!form.controls.email.valid && form.controls.email.touched">
+                    Please enter a valid email address. example@example.com
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="signup-password">Password</label>
+                <input 
+                type="password" 
+                class="form-control" 
+                id="signup-password"
+                aria-describedby="signup-password-help"
+                placeholder="password"
+                formControlName="password"
+                [ngClass]="{'border-danger': !form.controls.password.valid && form.controls.password.touched}">
+                <small id="signup-password-help" class="form-text text-danger" class="form-text text-danger" *ngIf="!form.controls.password.valid && form.controls.password.touched">
+                    Password is not valid.
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="signup-re-password">Confirm-Password</label>
+                <input 
+                type="password" 
+                class="form-control" 
+                id="signup-re-password"
+                aria-describedby="signup-re-password-help"
+                placeholder="password"
+                formControlName="re_passwod"
+                [ngClass]="{'border-danger': !form.controls.re_passwod.valid && form.controls.re_passwod.touched}">
+                <small id="signup-re-password-help" class="form-text text-danger" class="form-text text-danger" *ngIf="!form.controls.re_passwod.valid && form.controls.re_passwod.touched">
+                    Password does not match.
+                </small>
+            </div>
+            <button 
+                type="submit" 
+                class="btn btn-primary mr-2"
+                [disabled]="!form.valid">Signup</button>
+            <span>or </span><a [routerLink]="['/auth/login']" class="card-link">Login</a>
+        </form>
+
+    </div>
+</div>

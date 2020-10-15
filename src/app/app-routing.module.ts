@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'timeline',
+    redirectTo: '/timeline',
     pathMatch: 'full'
   },
   {

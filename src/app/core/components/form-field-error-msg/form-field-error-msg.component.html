@@ -1,0 +1,12 @@
+<ng-container *ngIf="errors.length; else defaultElse">
+    <ng-container *ngFor="let msg of errors">
+        <small class="form-text d-block text-danger">
+            {{ msg }}
+        </small>
+    </ng-container>
+</ng-container>
+<ng-template #defaultElse>
+    <small class="form-text text-danger" class="form-text text-danger" *ngIf="!control.valid && control.touched">
+        {{ default }}
+    </small>
+</ng-template>

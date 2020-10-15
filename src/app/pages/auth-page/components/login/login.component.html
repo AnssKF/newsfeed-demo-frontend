@@ -16,9 +16,12 @@
                     placeholder="example@example.com"
                     formControlName="email"
                     [ngClass]="{'border-danger': !form.controls.email.valid && form.controls.email.touched}">
-                <small id="login-email-help" class="form-text text-danger" *ngIf="!form.controls.email.valid && form.controls.email.touched">
-                    Please enter a valid email address. example@example.com
-                </small>
+
+                <app-form-field-error-msg
+                    default="Please enter a valid email address. example@example.com"
+                    [errors]="backend_validation?.email || []"
+                    [control]="form.controls.email"
+                ></app-form-field-error-msg>
             </div>
             <div class="form-group">
                 <label for="login-password">Password</label>
@@ -30,9 +33,12 @@
                 placeholder="password"
                 formControlName="password"
                 [ngClass]="{'border-danger': !form.controls.password.valid && form.controls.password.touched}">
-                <small id="login-password-help" class="form-text text-danger" class="form-text text-danger" *ngIf="!form.controls.password.valid && form.controls.password.touched">
-                    Password is not valid.
-                </small>
+
+                <app-form-field-error-msg
+                    default="Password is not valid."
+                    [errors]="backend_validation?.password || []"
+                    [control]="form.controls.password"
+                ></app-form-field-error-msg>
             </div>
             <button 
                 type="submit" 

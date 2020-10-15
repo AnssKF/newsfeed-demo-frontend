@@ -16,9 +16,12 @@
                     placeholder="Username"
                     formControlName="username"
                     [ngClass]="{'border-danger': !form.controls.username.valid && form.controls.username.touched}">
-                <small id="signup-username-help" class="form-text text-danger" *ngIf="!form.controls.username.valid && form.controls.username.touched">
-                    Username should be between 8 to 20 characters. With no special characters.
-                </small>
+
+                <app-form-field-error-msg
+                    default="Username should be between 8 to 20 characters. With no special characters."
+                    [errors]="backend_validation?.username || []"
+                    [control]="form.controls.username"
+                ></app-form-field-error-msg>
             </div>
             <div class="form-group">
                 <label for="signup-email">Email address</label>
@@ -30,9 +33,12 @@
                     placeholder="example@example.com"
                     formControlName="email"
                     [ngClass]="{'border-danger': !form.controls.email.valid && form.controls.email.touched}">
-                <small id="signup-email-help" class="form-text text-danger" *ngIf="!form.controls.email.valid && form.controls.email.touched">
-                    Please enter a valid email address. example@example.com
-                </small>
+
+                <app-form-field-error-msg
+                    default="Please enter a valid email address. example@example.com"
+                    [errors]="backend_validation?.email || []"
+                    [control]="form.controls.email"
+                ></app-form-field-error-msg>
             </div>
             <div class="form-group">
                 <label for="signup-password">Password</label>
@@ -44,9 +50,12 @@
                 placeholder="password"
                 formControlName="password"
                 [ngClass]="{'border-danger': !form.controls.password.valid && form.controls.password.touched}">
-                <small id="signup-password-help" class="form-text text-danger" class="form-text text-danger" *ngIf="!form.controls.password.valid && form.controls.password.touched">
-                    Password is not valid.
-                </small>
+
+                <app-form-field-error-msg
+                    default="Password is not valid."
+                    [errors]="backend_validation?.password || []"
+                    [control]="form.controls.password"
+                ></app-form-field-error-msg>
             </div>
             <div class="form-group">
                 <label for="signup-re-password">Confirm-Password</label>
@@ -58,9 +67,11 @@
                 placeholder="password"
                 formControlName="re_passwod"
                 [ngClass]="{'border-danger': !form.controls.re_passwod.valid && form.controls.re_passwod.touched}">
-                <small id="signup-re-password-help" class="form-text text-danger" class="form-text text-danger" *ngIf="!form.controls.re_passwod.valid && form.controls.re_passwod.touched">
-                    Password does not match.
-                </small>
+
+                <app-form-field-error-msg
+                    default="Password does not match."
+                    [control]="form.controls.re_passwod"
+                ></app-form-field-error-msg>
             </div>
             <button 
                 type="submit" 

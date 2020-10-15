@@ -4,3 +4,5 @@ export const K_REGEX = {
     PASSWORD: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
     USERNAME: /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/
 }
+
+export const K_ACCESS_TOKEN_KEY = 'token'

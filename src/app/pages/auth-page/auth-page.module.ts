@@ -6,6 +6,7 @@ import { AuthPageComponent } from './auth-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/core/modules/shared.module';
 
 const ROUTES: Routes = [
   {
@@ -33,7 +34,9 @@ const ROUTES: Routes = [
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule.forChild(ROUTES)
+    RouterModule.forChild(ROUTES),
+
+    SharedModule
   ]
 })
 export class AuthPageModule { }

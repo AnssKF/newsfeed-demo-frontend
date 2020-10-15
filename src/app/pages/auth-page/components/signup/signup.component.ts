@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { K_REGEX } from 'src/app/core/constants/general';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { ISignupPayload } from 'src/app/core/interfaces/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -18,14 +21,29 @@ export class SignupComponent implements OnInit {
     validators: this.MatchConfirom('password', 're_passwod')
   })
 
-  constructor(private fb: FormBuilder) { }
-
-  ngOnInit(): void {
+  backend_validation: {username: string[], email: string[], password: string[]} = {
+    username: [],
+    email: [],
+    password: []
   }
 
-  onSubmit() {
-    console.log(this.form.value);
-    
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
+
+  ngOnInit(): void {
+    this.authService.logout()
+  }
+
+  async onSubmit(): Promise<void> {
+    const payload = this.form.value;
+    delete payload.re_passwod
+
+    try{
+      const res = await this.authService.signup(payload).toPromise()
+      this.authService.setToken(res.access)
+      this.router.navigate(['/timeline'])
+    }catch(e){
+      this.backend_validation = e.error
+    }
   }
 
   MatchConfirom(field1: any, field2: any) {

@@ -14,3 +14,8 @@ export interface ISignupPayload {
     email: string,
     password: string
 }
+
+export interface ILoginStatus {
+    isLoggedIn: boolean,
+    accessToken: string
+}

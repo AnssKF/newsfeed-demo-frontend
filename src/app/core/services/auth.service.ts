@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { ILoginPayload, IJWTPayload, ISignupPayload, ILoginStatus } from '../interfaces/auth';
 import { K_AUTH_API } from '../constants/api';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { K_ACCESS_TOKEN_KEY } from '../constants/general';
 
 
@@ -14,6 +14,7 @@ import { K_ACCESS_TOKEN_KEY } from '../constants/general';
 export class AuthService {
 
   private _loginStatus: BehaviorSubject<ILoginStatus> = new BehaviorSubject<ILoginStatus>({isLoggedIn: false, accessToken: ''})
+  private _verified: boolean = false;
 
   constructor(private http: HttpClient) {
     const accessToken = localStorage.getItem(K_ACCESS_TOKEN_KEY) || null
@@ -38,8 +39,23 @@ export class AuthService {
     })
   }
 
+  async isLoggedIn(): Promise<boolean>{
+    if(this._verified && this._loginStatus.value.isLoggedIn)
+        return Promise.resolve(true)
+
+    const accessToken = localStorage.getItem(K_ACCESS_TOKEN_KEY) || null
+    if(accessToken)
+      try{
+        await this.tokenVerify(accessToken)
+        return Promise.resolve(true)
+      }catch(e){}
+
+    return Promise.reject(false)
+  }
+
   setToken(token: string) {
     localStorage.setItem(K_ACCESS_TOKEN_KEY, token)
+    this._verified = true;
     this._loginStatus.next({
       isLoggedIn: true,
       accessToken: token
@@ -47,6 +63,8 @@ export class AuthService {
   }
 
   async tokenVerify(token: string): Promise<void>{
+    if(this._verified) return
+
     try{
       await this.http.post<IJWTPayload>(K_AUTH_API.TOKEN_VERIFY(), {token}).toPromise();
       this.setToken(token)

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { IsAuthenticatedGuard } from './core/interceptors/is-authenticated.guard';
 
 
 const routes: Routes = [
@@ -9,7 +10,8 @@ const routes: Routes = [
   },
   {
     path: 'timeline',
-    loadChildren: () => import('./pages/timeline-page/timeline-page.module').then(m => m.TimelinePageModule)
+    loadChildren: () => import('./pages/timeline-page/timeline-page.module').then(m => m.TimelinePageModule),
+    canActivate: [IsAuthenticatedGuard]
   },
   {
     path: '',

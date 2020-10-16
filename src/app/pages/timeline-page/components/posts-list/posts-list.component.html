@@ -1,1 +1,13 @@
-<p>posts-list works!</p>
+
+
+<div class="container-fluid">
+    <div class="mt-5"></div>
+    <div class="row justify-content-center mb-2" *ngFor="let post of posts">
+        <div class="col-12 col-sm-10 col-md-5">
+            <app-post-card
+                [post]="post"
+                (click)="postClicked($event)"
+            ></app-post-card>
+        </div>
+    </div>
+</div>

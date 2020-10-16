@@ -8,12 +8,13 @@ import {
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../services/auth.service';
+import { K_ACCESS_TOKEN_KEY } from '../constants/general';
 
 @Injectable()
 export class APIInterceptor implements HttpInterceptor {
 
   baseUrl = environment.baseUrl
-  loginStatus = this.authService.loginStatusChange.value
+  accessToken = localStorage.getItem(K_ACCESS_TOKEN_KEY) || null
 
   constructor(private authService: AuthService) {}
 
@@ -25,10 +26,10 @@ export class APIInterceptor implements HttpInterceptor {
       })
     }
 
-    if(this.loginStatus.isLoggedIn){
+    if(this.accessToken){
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${this.loginStatus.accessToken}`
+          Authorization: `Bearer ${this.accessToken}`
         }
       })
     }

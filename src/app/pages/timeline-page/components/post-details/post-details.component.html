@@ -1,1 +1,26 @@
-<p>post-details works!</p>
+
+
+<div class="container-fluid">
+    <div class="mt-5"></div>
+    <div class="row justify-content-center mb-2">
+        <div class="col-12 col-sm-10 col-md-5">
+            <app-post-card
+                [post]="post"
+                (click)="postClicked($event)"
+            ></app-post-card>
+        </div>
+    </div>
+    <hr>
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-5">
+            <div class="card" *ngFor="let comment of comments">
+                <div class="card-body">
+                    <small>
+                        <strong>@{{ comment.author.username }}</strong> 
+                        {{ comment.content }}
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

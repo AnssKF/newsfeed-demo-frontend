@@ -1,0 +1,27 @@
+<ng-container *ngIf="post !== null">
+    <div class="card cur-pointer" (click)="onClick()">
+        <div class="card-body border-bottom">
+            <div class="d-flex">
+                <div class="flex-grow-1">
+                    <strong>@{{ post.author.username }}</strong>
+                    <small class="text-muted ml-2">{{ getDateObj(post.created_at) | date }}</small>
+                </div>
+                <div>
+                    <button 
+                        type="button" 
+                        class="btn btn-sm" 
+                        [ngClass]="post.liked !== false ? 'btn-primary' : 'btn-outline-secondary'"
+                        (click)="onLike($event)">
+                        Like <span class="badge" [ngClass]="post.liked !== false ? 'badge-light' : 'badge-secondary'">{{ post.likes_count }}</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="card-text">
+                {{ post.content }}
+            </div>
+        </div>
+    </div>
+</ng-container>

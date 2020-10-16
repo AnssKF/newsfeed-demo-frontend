@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IPost } from 'src/app/core/interfaces/post';
 import { PostService } from 'src/app/core/services/post.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-posts-list',
@@ -13,10 +14,12 @@ export class PostsListComponent implements OnInit {
   posts: IPost[] = [];
   order: 'ASCE' | 'DESC' = 'DESC';
 
+  subscription: Subscription;
+
   constructor(private postService: PostService, private router: Router, private route: ActivatedRoute) { }
 
   async ngOnInit(): Promise<void> {
-    this.postService.postsChange.subscribe((posts)=>[
+    this.subscription = this.postService.postsChange.subscribe((posts)=>[
       this.posts = posts
     ])
 
@@ -39,6 +42,10 @@ export class PostsListComponent implements OnInit {
   async toggleOrder() {
     this.order = this.order === 'DESC'? 'ASCE': 'DESC'
     await this.postService.fetchAll(this.order)
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe()
   }
 
 }

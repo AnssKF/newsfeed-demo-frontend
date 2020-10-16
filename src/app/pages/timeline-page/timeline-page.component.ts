@@ -15,11 +15,7 @@ export class TimelinePageComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    console.log('hmm');
-    
     this.subscription = this.authService.loginStatusChange.subscribe(({isLoggedIn})=>{
-      console.log('b', isLoggedIn);
-      
       if(!isLoggedIn){
         this.router.navigate(['/auth/login'])
       }

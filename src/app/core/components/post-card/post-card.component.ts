@@ -8,6 +8,7 @@ import { PostService } from '../../services/post.service';
   styleUrls: ['./post-card.component.scss']
 })
 export class PostCardComponent implements OnInit {
+  @Input() clickable: boolean = false;
 
   @Input() post: IPost = null;
   @Output() click: EventEmitter<IPost> = new EventEmitter<IPost>()
@@ -22,7 +23,9 @@ export class PostCardComponent implements OnInit {
   }
 
   onClick() {
-    this.click.emit(this.post)
+    if(this.clickable){
+      this.click.emit(this.post)
+    }
   }
 
   async onLike($e) {

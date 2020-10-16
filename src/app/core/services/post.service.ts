@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { IRESTResponse } from '../interfaces/rest-response';
 import { IPost, IPostPayload } from '../interfaces/post';
 import { K_POST_API, K_COMMENT_API, K_LIKE_APU } from '../constants/api';
-import { IComment } from '../interfaces/comment';
+import { IComment, ICommentPayload } from '../interfaces/comment';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -72,5 +72,9 @@ export class PostService {
         rej(err)
       })
     })
+  }
+
+  addComment(payload: ICommentPayload){
+    return this.http.post<IComment>(K_COMMENT_API.FETCH(), payload)
   }
 }

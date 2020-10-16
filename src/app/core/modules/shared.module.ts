@@ -4,6 +4,7 @@ import { FormFieldErrorMsgComponent } from '../components/form-field-error-msg/f
 import { PostCardComponent } from '../components/post-card/post-card.component'
 import { PostFormComponent } from '../components/post-form/post-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CommentFormComponent } from '../components/comment-form/comment-form.component';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormFieldErrorMsgComponent,
     PostCardComponent,
     PostFormComponent,
+    CommentFormComponent,
   ],
   imports: [
     CommonModule,
@@ -20,6 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormFieldErrorMsgComponent,
     PostCardComponent,
     PostFormComponent,
+    CommentFormComponent,
 
     ReactiveFormsModule
   ]

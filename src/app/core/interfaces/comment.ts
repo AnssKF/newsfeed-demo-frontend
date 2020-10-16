@@ -7,3 +7,8 @@ export interface IComment {
     post: number,
     created_at: string
 }
+
+export interface ICommentPayload {
+    post: number,
+    content: string
+}

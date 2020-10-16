@@ -34,6 +34,9 @@ export class PostDetailsComponent implements OnInit {
     this.comments = (await this.postService.fetchCommentsByPostId(id).toPromise()).results || []
   }
 
-
+  addedComment(comment: IComment){
+    if(comment !== null)
+      return this.comments.unshift(comment)
+  }
 
 }

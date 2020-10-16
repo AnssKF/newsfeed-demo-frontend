@@ -1,27 +1,41 @@
 # NewsFeed
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
+A Simple Demo using Angular to display a Timeline blog posts with comment and like features.
 
-## Development server
+--- 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Installation
 
-## Code scaffolding
+### Front-End App
+- Install [Angular CLI](https://cli.angular.io/)
+- `git clone {this-repo-uri}`
+- `npm install`
+- `ng serve` To start development server
+- `ng build --prod` To build project
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Back-End App
+- [repo](https://github.com/AnssKF/newsfeed-demo-backend)
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Stories
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### As User
+- I can register as a new user
+- I can login using any credentials
+- I can create a new post
+- I can see all posts created by other users
+- I can sort posts chronologically (from new to old and vice versa)
+- I can select a post to see more details
+- I can check the comments on a post
+- I can add comments to an any existing post
+- I can check the likes count for any post
+- I can like any post
+### As Admin
+Using Django Admin Panel
+- I can list all system users
+- I can deactivate any user account (deactivated accounts should not be able to login)
+- I can list all system posts
+- I can delete any post
+- I can list all system comments
+- I can delete any comment

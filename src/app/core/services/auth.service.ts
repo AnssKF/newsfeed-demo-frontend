@@ -17,9 +17,12 @@ export class AuthService {
   private _verified: boolean = false;
 
   constructor(private http: HttpClient) {
+  }
+  
+  async init() {
     const accessToken = localStorage.getItem(K_ACCESS_TOKEN_KEY) || null
     if(accessToken){
-      this.tokenVerify(accessToken).then()
+      await this.tokenVerify(accessToken)
     }
   }
 
@@ -33,6 +36,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem(K_ACCESS_TOKEN_KEY)
+    this._verified = false;
     this._loginStatus.next({
       isLoggedIn: false,
       accessToken: ''
@@ -42,7 +46,7 @@ export class AuthService {
   async isLoggedIn(): Promise<boolean>{
     if(this._verified && this._loginStatus.value.isLoggedIn)
         return Promise.resolve(true)
-
+    
     const accessToken = localStorage.getItem(K_ACCESS_TOKEN_KEY) || null
     if(accessToken)
       try{
@@ -50,6 +54,7 @@ export class AuthService {
         return Promise.resolve(true)
       }catch(e){}
 
+      
     return Promise.reject(false)
   }
 
@@ -63,8 +68,6 @@ export class AuthService {
   }
 
   async tokenVerify(token: string): Promise<void>{
-    if(this._verified) return
-
     try{
       await this.http.post<IJWTPayload>(K_AUTH_API.TOKEN_VERIFY(), {token}).toPromise();
       this.setToken(token)

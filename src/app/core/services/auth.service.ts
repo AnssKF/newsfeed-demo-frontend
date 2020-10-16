@@ -3,17 +3,15 @@ import { HttpClient } from '@angular/common/http';
 
 import { ILoginPayload, IJWTPayload, ISignupPayload, ILoginStatus } from '../interfaces/auth';
 import { K_AUTH_API } from '../constants/api';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { K_ACCESS_TOKEN_KEY } from '../constants/general';
 
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService {
 
-  private _loginStatus: BehaviorSubject<ILoginStatus> = new BehaviorSubject<ILoginStatus>({isLoggedIn: false, accessToken: ''})
+  private _loginStatus: Subject<ILoginStatus> = new Subject<ILoginStatus>()
   private _verified: boolean = false;
 
   constructor(private http: HttpClient) {
@@ -44,7 +42,7 @@ export class AuthService {
   }
 
   async isLoggedIn(): Promise<boolean>{
-    if(this._verified && this._loginStatus.value.isLoggedIn)
+    if(this._verified)
         return Promise.resolve(true)
     
     const accessToken = localStorage.getItem(K_ACCESS_TOKEN_KEY) || null

@@ -14,11 +14,11 @@ import { K_ACCESS_TOKEN_KEY } from '../constants/general';
 export class APIInterceptor implements HttpInterceptor {
 
   baseUrl = environment.baseUrl
-  accessToken = localStorage.getItem(K_ACCESS_TOKEN_KEY) || null
-
+  
   constructor(private authService: AuthService) {}
-
+  
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    const accessToken = localStorage.getItem(K_ACCESS_TOKEN_KEY) || null
     
     if(request.url.indexOf('api') !== -1){
       request = request.clone({
@@ -26,10 +26,10 @@ export class APIInterceptor implements HttpInterceptor {
       })
     }
 
-    if(this.accessToken){
+    if(accessToken){
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${this.accessToken}`
+          Authorization: `Bearer ${accessToken}`
         }
       })
     }

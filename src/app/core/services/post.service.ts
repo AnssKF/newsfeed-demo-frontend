@@ -6,9 +6,7 @@ import { K_POST_API, K_COMMENT_API, K_LIKE_APU } from '../constants/api';
 import { IComment, ICommentPayload } from '../interfaces/comment';
 import { BehaviorSubject } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PostService {
 
   posts: IPost[] = []

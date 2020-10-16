@@ -16,6 +16,7 @@ import { SharedModule } from './core/modules/shared.module';
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
+    SharedModule.forRoot(),
   ],
   providers: [
     {

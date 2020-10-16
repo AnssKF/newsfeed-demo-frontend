@@ -10,17 +10,21 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class PostsListComponent implements OnInit {
 
-  posts: IPost[] = []
+  posts: IPost[] = [];
+  order: 'ASCE' | 'DESC' = 'DESC';
 
   constructor(private postService: PostService, private router: Router, private route: ActivatedRoute) { }
 
   async ngOnInit(): Promise<void> {
-    await this.getData()
+    this.postService.postsChange.subscribe((posts)=>[
+      this.posts = posts
+    ])
+
+    await this.getData(this.order)
   }
   
-  async getData(){
-    const res = await this.postService.fetchAll().toPromise()
-    this.posts = res.results
+  async getData(order: 'ASCE' | 'DESC'){
+    await this.postService.fetchAll(order)
   }
 
   postClicked(post: IPost) {
@@ -30,6 +34,11 @@ export class PostsListComponent implements OnInit {
         post
       }
     })
+  }
+
+  async toggleOrder() {
+    this.order = this.order === 'DESC'? 'ASCE': 'DESC'
+    await this.postService.fetchAll(this.order)
   }
 
 }

@@ -9,3 +9,6 @@ export interface IPost {
     liked: false | number
 }
 
+export interface IPostPayload {
+    content: string
+}

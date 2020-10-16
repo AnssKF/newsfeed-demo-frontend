@@ -1,7 +1,16 @@
 
 
 <div class="container-fluid">
-    <div class="mt-5"></div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-12 col-sm-10 col-md-5">
+            <app-post-form></app-post-form>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-12 col-sm-10 col-md-5 text-right">
+            <small (click)="toggleOrder()" class="text-primary cur-pointer">Order: {{ order === 'DESC'? 'ASCE': 'DESC' }}</small>
+        </div>
+    </div>
     <div class="row justify-content-center mb-2" *ngFor="let post of posts">
         <div class="col-12 col-sm-10 col-md-5">
             <app-post-card

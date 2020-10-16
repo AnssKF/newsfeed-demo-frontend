@@ -1,7 +1,11 @@
-<app-nav-bar></app-nav-bar>
+<div class="d-flex flex-column vh-100">
+    <div>
+        <app-nav-bar></app-nav-bar>
+    </div>
+    <main class="flex-grow-1">
+        <ng-content></ng-content>
+    </main>
+</div>
 
-<main>
-    <ng-content></ng-content>
-</main>
 
 

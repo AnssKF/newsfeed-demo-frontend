@@ -1,25 +1,27 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">NewsFeed</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#app-navbar"
-        aria-controls="app-navbar" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="app-navbar">
-        <ul class="navbar-nav mr-auto">
-
-            <li class="nav-item" routerLinkActive="active" *ngIf="isLoggedIn">
-                <a class="nav-link cur-pointer" [routerLink]="['/timeline']">Timeline</a>
-            </li>
-
-            <li class="nav-item" routerLinkActive="active" *ngIf="!isLoggedIn">
-                <a class="nav-link cur-pointer" [routerLink]="['/auth/login']">Login/Signup</a>
-            </li>
-
-            <li class="nav-item" routerLinkActive="active" *ngIf="isLoggedIn">
-                <a class="nav-link cur-pointer" (click)="logout()">Logout</a>
-            </li>
-
-        </ul>
+    <div class="container">
+        <a class="navbar-brand" href="#">NewsFeed</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#app-navbar"
+            aria-controls="app-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="app-navbar">
+            <ul class="navbar-nav mr-auto">
+    
+                <li class="nav-item" routerLinkActive="active" *ngIf="isLoggedIn">
+                    <a class="nav-link cur-pointer" [routerLink]="['/timeline']">Timeline</a>
+                </li>
+    
+                <li class="nav-item" routerLinkActive="active" *ngIf="!isLoggedIn">
+                    <a class="nav-link cur-pointer" [routerLink]="['/auth/login']">Login/Signup</a>
+                </li>
+    
+                <li class="nav-item" routerLinkActive="active" *ngIf="isLoggedIn">
+                    <a class="nav-link cur-pointer" (click)="logout()">Logout</a>
+                </li>
+    
+            </ul>
+        </div>
     </div>
 </nav>
